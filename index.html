@@ -232,14 +232,16 @@
                         <p>linkedin.com/in/sharon-ss</p>
                     </div>
                 </div>
-                <form class="contact-form"
+                <form class="contact-form" id="contactForm"
                     action="https://docs.google.com/forms/d/e/1FAIpQLScEpy38qUqaJdRgONdooyoLIgselhr5hrkOveafv-J1jtSTIw/formResponse"
-                    method="POST" target="_blank">
+                    method="POST" target="hiddenConfirm">
                     <input type="text" name="entry.1763939515" placeholder="Your Name" required>
                     <input type="email" name="entry.177545835" placeholder="Your Email" required>
                     <textarea name="entry.1316175362" rows="5" placeholder="Your Message" required></textarea>
                     <button type="submit" class="btn primary-btn">Send Message</button>
                 </form>
+                <iframe name="hiddenConfirm" id="hiddenConfirm" style="display:none;"
+                    onload="if(submitted){showConfirmation();}"></iframe>
             </div>
         </div>
     </section>
@@ -252,6 +254,16 @@
             <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
+
+    <!-- Popup Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <i class="fas fa-check-circle modal-icon"></i>
+            <h2>Thank You!</h2>
+            <p>Your message has been sent successfully. I will get back to you soon.</p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

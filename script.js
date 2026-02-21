@@ -33,7 +33,7 @@ const smoothScroll = () => {
                 // Actually let's just remove the class
                 nav.classList.remove('nav-active');
                 document.querySelector('.burger').classList.remove('toggle');
-                 document.querySelectorAll('.nav-links li').forEach(link => {
+                document.querySelectorAll('.nav-links li').forEach(link => {
                     link.style.animation = '';
                 });
             }
@@ -48,14 +48,14 @@ const smoothScroll = () => {
 // Simple Intersection Observer for scroll animations (fade in elements)
 const scrollAnimation = () => {
     const sections = document.querySelectorAll('section');
-    
+
     const options = {
         threshold: 0.2
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if(!entry.isIntersecting) {
+            if (!entry.isIntersecting) {
                 return;
             }
             entry.target.style.opacity = '1';
@@ -69,7 +69,7 @@ const scrollAnimation = () => {
         section.style.opacity = '0';
         section.style.transform = 'translateY(20px)';
         section.style.transition = 'all 1s ease-out';
-        
+
         observer.observe(section);
     });
 }
@@ -80,3 +80,50 @@ navSlide();
 smoothScroll();
 // Delay animation init slightly to avoid immediate trigger on load sometimes
 setTimeout(scrollAnimation, 100);
+
+// Contact Form Submission Handling
+let submitted = false;
+
+function showConfirmation() {
+    const modal = document.getElementById('confirmationModal');
+    const form = document.getElementById('contactForm');
+
+    // Show modal
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+
+    // Reset form
+    if (form) {
+        form.reset();
+    }
+
+    // Reset flag
+    submitted = false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('confirmationModal');
+    const closeBtn = document.querySelector('.close-btn');
+    const form = document.getElementById('contactForm');
+
+    if (closeBtn && modal) {
+        closeBtn.onclick = function () {
+            modal.style.display = 'none';
+        }
+    }
+
+    if (modal) {
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    }
+
+    if (form) {
+        form.addEventListener('submit', () => {
+            submitted = true;
+        });
+    }
+});
